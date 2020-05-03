@@ -1,0 +1,255 @@
+// --------------------------------------------------- //
+                      Style Sheet
+// --------------------------------------------------- //
+
+// Variables ------------------------------------ //
+
+$master-width: 23em
+
+$border: ($master-width / 140) solid #FFF00055
+$background: #FFF00020
+
+// Clock dimensions
+$clock-size: $master-width
+// Clock hand
+$clock-hand-width: $clock-size / 84
+$clock-hand-offset: $clock-size / 15
+//
+$hour-hand-length: ($clock-size / 2) - ($clock-size / 6)
+$minute-hand-length: ($clock-size / 2) - ($clock-size / 30)
+$second-hand-length: ($clock-size / 2) + ($clock-size / 60)
+//
+$hour-hand-width: $clock-hand-width
+$minute-hand-width: $clock-hand-width * 0.7
+$second-hand-width: $clock-hand-width * 0.4
+//
+$hour-hand-border: $clock-size / 120
+$minute-hand-border: $clock-size / 180
+$second-hand-border: $clock-size / 200
+// Clock pivot
+$clock-pivot-size: $clock-hand-width * 3
+$clock-pivot-color: #FFF000FF
+// Clock number
+$clock-number-font-size: $clock-size / 11
+
+// Digital display
+$display-font-size: $master-width / 8
+$display-separator-width: $master-width / 60
+
+// Misc
+$full-circle: 360
+
+// Mixins ------------------------------------ //
+
+// Makes a circle of given size
+=circle($size)
+	height: $size
+	width: $size
+	border-radius: $size
+
+// Gets rotation for nth item in clock when evenly rotated around clockwise
+=clock-rotation($index, $total-amount)
+	transform: rotate(#{($full-circle / $total-amount) * $index}deg)
+
+// Centers element in upper relative positioned element
+=centerInBlock($hAmount: 50%, $vAmount: 50%)
+	position: absolute
+	top: $vAmount
+	left: $hAmount
+	margin-right: -$hAmount
+	transform: translate(-$hAmount, -$vAmount)
+
+// Calculates position for clock hand
+=clock-hand-position($height: $clock-size / 2, $width: $clock-hand-width, $offset: $clock-hand-offset)
+	position: absolute
+	width: $width
+	top: ($clock-size / 2) - $height + $offset
+	left: ($clock-size / 2)
+	margin-left: -$width
+	transform-origin: center (($clock-size / 2) - (($clock-size / 2) - $height + $offset)) 
+	z-index: 5
+
+// Standard HTML ------------------------------------ //
+
+body
+	color: #ffffff
+	background-color: #000000
+	font-family: 'Montserrat', sans-serif
+	font-size: 14px
+	padding: 1em
+	align-content: center
+	text-align: center
+
+h1
+	font-size: $master-width / 12
+	color: #FFFFAA55
+
+// Digital display ------------------------------------ //
+
+// Wrapper for digital display
+.digital-display
+	display: inline-flex
+	margin: $master-width / 30
+	padding: $master-width / 15
+	border-radius: $master-width / 30
+	border: $border
+	background-color: $background
+
+// Any number or separator within the display - layout
+.display-component
+	display: block
+	float: left
+
+// Any number or separator within the display - character styling
+.display-chars
+	font-size: $display-font-size
+	font-family: 'Major Mono Display', 'Roboto Mono', monospace
+	color: #FFF000FF
+
+// Specific for digits
+.time-digits
+
+// Specific for separator	
+.separator
+	width: $display-separator-width
+	color: #FFF00045
+	padding-right: $display-separator-width / 2
+
+// Analog clock ------------------------------------ //
+
+// The wrapper/background for analog clock
+.analog-clock-face
+	display: inline-block
+	position: relative
+	margin: $master-width / 30
+	+circle($clock-size)
+	border: $border
+	background-color: $background
+	align-items: center
+
+// The pivot point in the center of the clock
+.clock-pivot
+	display: block
+	+centerInBlock()
+	+circle($clock-pivot-size)
+	background-color: $clock-pivot-color
+	z-index: 10
+
+// Generic to any clock hand
+.clock-hand
+	display: block
+	border: $border
+	border-radius: $clock-hand-width
+	background-color: $background
+	z-index: 5
+
+// Specific to hour hand
+.hour-hand
+	height: $hour-hand-length
+	+clock-hand-position($hour-hand-length, $hour-hand-width, $clock-hand-offset)
+	border-radius: $hour-hand-width * 2
+	border-width: $hour-hand-border
+	border-color: #FFF000BB
+
+// Specific to minute hand
+.minute-hand
+	height: $minute-hand-length
+	+clock-hand-position($minute-hand-length, $minute-hand-width, $clock-hand-offset)
+	border-radius: $minute-hand-width * 2
+	border-width: $minute-hand-border
+	border-color: #FFF00099
+
+// Specific to second hand
+.second-hand
+	height: $second-hand-length
+	+clock-hand-position($second-hand-length, $second-hand-width, $clock-hand-offset)
+	border-radius: $second-hand-width * 2
+	border-width: $second-hand-border
+	border-color: #FFF00055
+
+// Wrapper container for clock numbers
+.clock-numbers
+	display: block
+	position: absolute
+	height: $clock-size
+	width: $clock-size
+
+// Style for clock numbers
+.clock-number
+	position: absolute
+	top: 0
+	left: 50%
+	margin-left: -($clock-number-font-size / 4)
+	font-size: $clock-number-font-size
+	font-family: 'Major Mono Display', 'Roboto Mono', monospace
+	color: #FFF000AA
+
+// Rotates each of the numbers into position
+#clock-number-position00
+	+clock-rotation(0, 10)
+
+#clock-number-position01
+	+clock-rotation(1, 10)
+
+#clock-number-position02
+	+clock-rotation(2, 10)
+
+#clock-number-position03
+	+clock-rotation(3, 10)
+
+#clock-number-position04
+	+clock-rotation(4, 10)
+
+#clock-number-position05
+	+clock-rotation(5, 10)
+
+#clock-number-position06
+	+clock-rotation(6, 10)
+
+#clock-number-position07
+	+clock-rotation(7, 10)
+
+#clock-number-position08
+	+clock-rotation(8, 10)
+
+#clock-number-position09
+	+clock-rotation(9, 10)
+
+// Rotates each of the numbers back upright
+#clock-number00
+	+clock-rotation(-0, 10)
+
+#clock-number01
+	+clock-rotation(-1, 10)
+
+#clock-number02
+	+clock-rotation(-2, 10)
+
+#clock-number03
+	+clock-rotation(-3, 10)
+
+#clock-number04
+	+clock-rotation(-4, 10)
+
+#clock-number05
+	+clock-rotation(-5, 10)
+
+#clock-number06
+	+clock-rotation(-6, 10)
+
+#clock-number07
+	+clock-rotation(-7, 10)
+
+#clock-number08
+	+clock-rotation(-8, 10)
+
+#clock-number09
+	+clock-rotation(-9, 10)
+
+// Generic ------------------------------------ //
+
+.center
+	display: block
+	margin-left: auto
+	margin-right: auto
+

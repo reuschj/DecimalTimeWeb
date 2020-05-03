@@ -1,0 +1,219 @@
+body {
+  color: #ffffff;
+  background-color: #000000;
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  padding: 1em;
+  align-content: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 1.9166666667em;
+  color: #FFFFAA55;
+}
+
+.digital-display {
+  display: inline-flex;
+  margin: 0.7666666667em;
+  padding: 1.5333333333em;
+  border-radius: 0.7666666667em;
+  border: 0.1642857143em solid #FFF00055;
+  background-color: #FFF00020;
+}
+
+.display-component {
+  display: block;
+  float: left;
+}
+
+.display-chars {
+  font-size: 2.875em;
+  font-family: "Major Mono Display", "Roboto Mono", monospace;
+  color: #FFF000FF;
+}
+
+.separator {
+  width: 0.3833333333em;
+  color: #FFF00045;
+  padding-right: 0.1916666667em;
+}
+
+.analog-clock-face {
+  display: inline-block;
+  position: relative;
+  margin: 0.7666666667em;
+  height: 23em;
+  width: 23em;
+  border-radius: 23em;
+  border: 0.1642857143em solid #FFF00055;
+  background-color: #FFF00020;
+  align-items: center;
+}
+
+.clock-pivot {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  height: 0.8214285714em;
+  width: 0.8214285714em;
+  border-radius: 0.8214285714em;
+  background-color: #FFF000FF;
+  z-index: 10;
+}
+
+.clock-hand {
+  display: block;
+  border: 0.1642857143em solid #FFF00055;
+  border-radius: 0.2738095238em;
+  background-color: #FFF00020;
+  z-index: 5;
+}
+
+.hour-hand {
+  height: 7.6666666667em;
+  position: absolute;
+  width: 0.2738095238em;
+  top: 5.3666666667em;
+  left: 11.5em;
+  margin-left: -0.2738095238em;
+  transform-origin: center 6.1333333333em;
+  z-index: 5;
+  border-radius: 0.5476190476em;
+  border-width: 0.1916666667em;
+  border-color: #FFF000BB;
+}
+
+.minute-hand {
+  height: 10.7333333333em;
+  position: absolute;
+  width: 0.1916666667em;
+  top: 2.3em;
+  left: 11.5em;
+  margin-left: -0.1916666667em;
+  transform-origin: center 9.2em;
+  z-index: 5;
+  border-radius: 0.3833333333em;
+  border-width: 0.1277777778em;
+  border-color: #FFF00099;
+}
+
+.second-hand {
+  height: 11.8833333333em;
+  position: absolute;
+  width: 0.1095238095em;
+  top: 1.15em;
+  left: 11.5em;
+  margin-left: -0.1095238095em;
+  transform-origin: center 10.35em;
+  z-index: 5;
+  border-radius: 0.219047619em;
+  border-width: 0.115em;
+  border-color: #FFF00055;
+}
+
+.clock-numbers {
+  display: block;
+  position: absolute;
+  height: 23em;
+  width: 23em;
+}
+
+.clock-number {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -0.5227272727em;
+  font-size: 2.0909090909em;
+  font-family: "Major Mono Display", "Roboto Mono", monospace;
+  color: #FFF000AA;
+}
+
+#clock-number-position00 {
+  transform: rotate(0deg);
+}
+
+#clock-number-position01 {
+  transform: rotate(36deg);
+}
+
+#clock-number-position02 {
+  transform: rotate(72deg);
+}
+
+#clock-number-position03 {
+  transform: rotate(108deg);
+}
+
+#clock-number-position04 {
+  transform: rotate(144deg);
+}
+
+#clock-number-position05 {
+  transform: rotate(180deg);
+}
+
+#clock-number-position06 {
+  transform: rotate(216deg);
+}
+
+#clock-number-position07 {
+  transform: rotate(252deg);
+}
+
+#clock-number-position08 {
+  transform: rotate(288deg);
+}
+
+#clock-number-position09 {
+  transform: rotate(324deg);
+}
+
+#clock-number00 {
+  transform: rotate(0deg);
+}
+
+#clock-number01 {
+  transform: rotate(-36deg);
+}
+
+#clock-number02 {
+  transform: rotate(-72deg);
+}
+
+#clock-number03 {
+  transform: rotate(-108deg);
+}
+
+#clock-number04 {
+  transform: rotate(-144deg);
+}
+
+#clock-number05 {
+  transform: rotate(-180deg);
+}
+
+#clock-number06 {
+  transform: rotate(-216deg);
+}
+
+#clock-number07 {
+  transform: rotate(-252deg);
+}
+
+#clock-number08 {
+  transform: rotate(-288deg);
+}
+
+#clock-number09 {
+  transform: rotate(-324deg);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
