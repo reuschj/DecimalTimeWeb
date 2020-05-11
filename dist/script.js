@@ -159,6 +159,7 @@ var DecimalTime = /** @class */ (function () {
         return { hours: hours, minutes: minutes, seconds: seconds, milliseconds: milliseconds };
     };
     DecimalTime.conversion = 0.864;
+    DecimalTime.decimalSecond = 1000 * DecimalTime.conversion;
     return DecimalTime;
 }());
 // React Hooks ------------------------------------ //
@@ -313,7 +314,7 @@ var ClockNumbers = function (_a) {
 };
 // Component for an analog clock display for a decimal time
 var AnalogClock = function (_a) {
-    var _b = _a.decimalTime, decimalTime = _b === void 0 ? new DecimalTime() : _b, _c = _a.refreshRate, refreshRate = _c === void 0 ? 1000 : _c, showSeconds = _a.showSeconds;
+    var _b = _a.decimalTime, decimalTime = _b === void 0 ? new DecimalTime() : _b, _c = _a.refreshRate, refreshRate = _c === void 0 ? DecimalTime.decimalSecond : _c, showSeconds = _a.showSeconds;
     var numberCount = useRef(10);
     var _d = useDecimalTime(decimalTime, refreshRate, true), hours = _d.hours, minutes = _d.minutes, seconds = _d.seconds;
     var clockNumbers = useMemo(function () { return (React.createElement(ClockNumbers, { count: numberCount.current })); }, [numberCount.current]);
@@ -328,10 +329,10 @@ var AnalogClock = function (_a) {
 var decimalTime = new DecimalTime();
 // Defines the React app
 var App = function (_a) {
-    var title = _a.title, _b = _a.refreshRate, refreshRate = _b === void 0 ? 1000 : _b;
+    var title = _a.title, _b = _a.refreshRate, refreshRate = _b === void 0 ? DecimalTime.decimalSecond : _b;
     return (React.createElement("div", null,
         title && (React.createElement("h1", null, title)),
         React.createElement(DigitalDecimalDisplay, { decimalTime: decimalTime, refreshRate: refreshRate, blinkRate: 1000, showSeconds: true }),
         React.createElement(AnalogClock, { decimalTime: decimalTime, refreshRate: refreshRate, showSeconds: true })));
 };
-ReactDOM.render(React.createElement(App, { title: "Current decimal time:", refreshRate: 1000 }), document.getElementById('root'));
+ReactDOM.render(React.createElement(App, { title: "Current decimal time:", refreshRate: DecimalTime.decimalSecond }), document.getElementById('root'));

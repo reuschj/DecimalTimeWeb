@@ -29,6 +29,7 @@ class DecimalTime {
     private run: boolean = false;
     private refreshRate: number = 100;
     private static conversion: number = 0.864;
+	private static decimalSecond: number = 1000 * DecimalTime.conversion
 
 	/**
 	 * @param {Date} date - JavaScript `Date` instance
@@ -396,7 +397,7 @@ interface AnalogClockProps {
 }
 
 // Component for an analog clock display for a decimal time
-const AnalogClock: FunctionalComponent<AnalogClockProps> = ({ decimalTime = new DecimalTime(), refreshRate = 1000, showSeconds }: AnalogClockProps) => {
+const AnalogClock: FunctionalComponent<AnalogClockProps> = ({ decimalTime = new DecimalTime(), refreshRate = DecimalTime.decimalSecond, showSeconds }: AnalogClockProps) => {
 	const numberCount = useRef(10);
 	const { hours, minutes, seconds } = useDecimalTime(decimalTime, refreshRate, true);
 	const clockNumbers = useMemo(() => (
@@ -424,7 +425,7 @@ interface AppProps {
 const decimalTime = new DecimalTime();
 
 // Defines the React app
-const App: FunctionalComponent<AppProps> = ({ title, refreshRate = 1000 }) => (
+const App: FunctionalComponent<AppProps> = ({ title, refreshRate = DecimalTime.decimalSecond }) => (
 	<div>
 		{title && (
 			<h1>{title}</h1> 
@@ -435,6 +436,6 @@ const App: FunctionalComponent<AppProps> = ({ title, refreshRate = 1000 }) => (
 );
 
 ReactDOM.render(
-  <App title="Current decimal time:" refreshRate={1000} />,
+  <App title="Current decimal time:" refreshRate={DecimalTime.decimalSecond} />,
   document.getElementById('root')
 );
